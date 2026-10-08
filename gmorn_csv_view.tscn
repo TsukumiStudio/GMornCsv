@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="gmorn_csv_view.gd" id="1"]
+
+[node name="GMornCsvView" type="MarginContainer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+script = ExtResource("1")
+changed_cell_color = Color(0.48, 0.33, 0.1, 1)
+grid_color = Color(1, 1, 1, 0.08)
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Toolbar" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FilePath" type="Label" parent="Content/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "GMornCsv"
+text_overrun_behavior = 3
+
+[node name="Reload" type="Button" parent="Content/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "再読込"
+
+[node name="Discard" type="Button" parent="Content/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "変更を破棄"
+
+[node name="Save" type="Button" parent="Content/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "変更を保存"
+
+[node name="Table" type="Tree" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/item_margin = 0
+theme_override_constants/h_separation = 0
+columns = 2
+column_titles_visible = true
+hide_root = true
+select_mode = 0
+
+[node name="CellEditor" type="TextEdit" parent="Content/Table"]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 0
+scroll_smooth = false
+scroll_past_end_of_file = false
+context_menu_enabled = true
+
+[node name="Unsaved" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "未保存の変更"
+dialog_text = "変更を保存してからCSVを開きますか？"
+ok_button_text = "保存して開く"
+cancel_button_text = "キャンセル"
+
+[node name="Error" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "GMornCsv"
+
+[node name="ContextMenu" type="PopupMenu" parent="."]
+unique_name_in_owner = true
